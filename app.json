@@ -4,10 +4,10 @@
     "slug": "todo-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon/icon.png",
+    "icon": "./app/assets/icons/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./app/assets/icon/splash.png",
+      "image": "./app/assets/icons/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/icon/adaptive-icon.png",
+        "foregroundImage": "./app/assets/icons/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./app/assets/icon/favicon.png"
+      "favicon": "./app/assets/icons/favicon.png"
     }
   }
 }
