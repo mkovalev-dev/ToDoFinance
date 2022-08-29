@@ -9,20 +9,14 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "splash": {
+      "image": "./app/assets/icons/splash.png"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": false
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./app/assets/icons/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./app/assets/icons/favicon.png"
     }
   }
 }
