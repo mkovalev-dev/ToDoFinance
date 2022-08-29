@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import OnboardingScreen from "./app/views/onboarding";
+import { NativeBaseProvider, extendTheme, StatusBar } from "native-base";
+import { LinearGradient } from "expo-linear-gradient";
+
+const config = {
+  dependencies: {
+    "linear-gradient": LinearGradient,
+  },
+  useSystemColorMode: true,
+};
+
+const customTheme = extendTheme({ config });
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider theme={customTheme}>
+      <StatusBar />
+      <OnboardingScreen />
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
