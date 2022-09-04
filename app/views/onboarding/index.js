@@ -18,6 +18,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 const { width, height } = Dimensions.get("window");
 import { useState, useRef } from "react";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Slide = ({ item }) => {
   return (
@@ -64,6 +66,7 @@ const Slide = ({ item }) => {
 export default function OnboardingScreen() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const refSlider = useRef(null);
+  const navigation = useNavigation();
   const goNextSlide = () => {
     const nextSlideIndex = currentSlideIndex + 1;
     const offset = nextSlideIndex * width;
@@ -81,6 +84,11 @@ export default function OnboardingScreen() {
     const currentOffsetX = e.nativeEvent.contentOffset.x;
     const currentIndex = Math.round(currentOffsetX / width);
     setCurrentSlideIndex(currentIndex);
+  };
+
+  const goToInitialPage = async () => {
+    await AsyncStorage.setItem("onboarding", "true");
+    navigation.navigate("HomeStack");
   };
   return (
     <Box
@@ -106,6 +114,7 @@ export default function OnboardingScreen() {
       />
       {currentSlideIndex === OnboardingItems.length - 1 ? (
         <TouchableOpacity
+          onPress={goToInitialPage}
           style={{
             position: "absolute",
             bottom: 36,
@@ -127,7 +136,9 @@ export default function OnboardingScreen() {
             }}
           >
             <HStack space={2}>
-              <Text>К планам</Text>
+              <Text _light={{ color: "white" }} _dark={{ color: "white" }}>
+                К планам
+              </Text>
               <AntDesign name="arrowright" size={24} color="white" />
             </HStack>
           </LinearGradient>
@@ -164,7 +175,9 @@ export default function OnboardingScreen() {
               }}
             >
               <HStack space={2}>
-                <Text>Далее</Text>
+                <Text _light={{ color: "white" }} _dark={{ color: "white" }}>
+                  Далее
+                </Text>
                 <AntDesign name="arrowright" size={24} color="white" />
               </HStack>
             </LinearGradient>
