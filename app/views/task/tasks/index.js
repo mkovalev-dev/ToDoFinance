@@ -1,7 +1,6 @@
 import { Box } from "native-base";
 import { COLORS_PRIMARY, SECONDARY_GRADIENT } from "../../../modules/colors";
 import { PADDING } from "../../../modules/padding";
-import Today from "../today";
 import Tasks from "./components/tasks";
 
 export default function TasksScreen() {
@@ -19,7 +18,7 @@ export default function TasksScreen() {
         paddingTop: 56,
       }}
     >
-      <Today />
+      {/*<Today />*/}
       <Tasks />
     </Box>
   );

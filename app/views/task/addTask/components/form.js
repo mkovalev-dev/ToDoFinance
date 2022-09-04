@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { setUserTask } from "../../../../services/redux/slices/taskSlice";
 import { useNavigation } from "@react-navigation/native";
 import DatePicker from "react-native-modern-datepicker";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { Spacer } from "native-base/src/components/primitives/Flex";
 import moment from "moment";
 
@@ -22,13 +22,13 @@ export default function Form() {
     moment().format("YYYY/MM/DD")
   );
   const [viewDatePicker, setViewDatePicker] = useState(false);
+  const [isFlag, setIsFlag] = useState(false);
   const handleChange = (text) => setValue(text);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   return (
     <>
       <Box
-        mt={8}
         style={{
           backgroundColor: "#fff",
           width: "100%",
@@ -155,10 +155,55 @@ export default function Form() {
           Если дата не выбрана, то задача создается на текущую дату!
         </Text>
       </Box>
+      <Box
+        mt={4}
+        style={{
+          backgroundColor: "#fff",
+          width: "100%",
+          minHeight: 55,
+          padding: PADDING.ALL,
+          borderRadius: 12,
+        }}
+      >
+        <HStack space={2}>
+          <Icon
+            as={Entypo}
+            size={7}
+            name="flag"
+            _light={{
+              color: COLORS_PRIMARY.DEFAULT,
+            }}
+            _dark={{
+              color: COLORS_PRIMARY.DEFAULT,
+            }}
+          />
+          <Heading
+            _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+            _light={{ color: COLORS_GRAYSCALE.HEADER }}
+            size={"md"}
+            mb={4}
+          >
+            Флажок:
+          </Heading>
+          <Spacer />
+          <Switch
+            isChecked={isFlag}
+            defaultIsChecked={isFlag}
+            colorScheme="blue"
+            size="md"
+            onToggle={setIsFlag}
+          />
+        </HStack>
+        <Text color={COLORS_GRAYSCALE.PLACEHOLDER} textAlign={"center"}>
+          Задача устанавливаетя, как важная!
+        </Text>
+      </Box>
       <TouchableOpacity
         style={{ marginTop: 12 }}
         onPress={() => {
-          dispatch(setUserTask({ name: value, date: selectedDate }));
+          dispatch(
+            setUserTask({ name: value, date: selectedDate, flag: isFlag })
+          );
           navigation.goBack();
         }}
       >

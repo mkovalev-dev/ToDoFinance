@@ -35,6 +35,7 @@ const taskSlice = createSlice({
           name: action.payload.name,
           date: action.payload.date,
           is_finish: false,
+          flag: action.payload.flag,
         },
       ];
     },
