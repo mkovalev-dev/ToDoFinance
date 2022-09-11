@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
   userTasks: [],
+  userCategory: [],
 };
 
 /**
@@ -36,6 +37,7 @@ const taskSlice = createSlice({
           date: action.payload.date,
           is_finish: false,
           flag: action.payload.flag,
+          category_id: action.payload.category_id,
         },
       ];
     },
@@ -62,14 +64,33 @@ const taskSlice = createSlice({
       });
       if (index) {
         state.userTasks.splice(index, 1);
-        console.log(state.userTasks);
       }
+    },
+    /**
+     * Добавляет новый список.
+     */
+    setNewCategory: (state, action) => {
+      let index = state.userCategory.length + 1;
+      state.userCategory = [
+        ...state.userCategory,
+        {
+          id: index,
+          name: action.payload.name,
+          color: action.payload.color,
+          icon: action.payload.icon,
+        },
+      ];
     },
   },
   extraReducers: {},
 });
 export default taskSlice.reducer;
 
-export const { setUserCompleteTask, setUserTask, setDeleteTask } =
-  taskSlice.actions;
+export const {
+  setUserCompleteTask,
+  setUserTask,
+  setDeleteTask,
+  setNewCategory,
+} = taskSlice.actions;
 export const userTasks = (state) => state.task.userTasks;
+export const userCategory = (state) => state.task.userCategory;

@@ -4,6 +4,7 @@ import Today from "../today/today";
 import { Box } from "native-base";
 import Header from "./components/header";
 import StaticAction from "./components/StaticAction";
+import CategoryStack from "../listCategory/CategoryStack";
 
 export default function TaskCategory() {
   return (
@@ -23,6 +24,7 @@ export default function TaskCategory() {
       <Today />
       <StaticAction />
       <Header />
+      <CategoryStack />
     </Box>
   );
 }

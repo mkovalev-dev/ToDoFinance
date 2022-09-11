@@ -5,8 +5,10 @@ import moment from "moment";
 import { Spacer } from "native-base/src/components/primitives/Flex";
 import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Header() {
+  const navigation = useNavigation();
   return (
     <HStack alignItems="center" justifyContent="center" space={1}>
       <Heading
@@ -17,9 +19,7 @@ export default function Header() {
         Мои списки
       </Heading>
       <Spacer />
-      <TouchableOpacity
-      // onPress={() => navigation.navigate("AddTask")}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate("AddCategory")}>
         <Icon
           as={AntDesign}
           size={7}

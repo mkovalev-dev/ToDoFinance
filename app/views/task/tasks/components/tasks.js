@@ -7,40 +7,34 @@ import TaskItem from "./taskItem";
 import { shallowEqual, useSelector } from "react-redux";
 import moment from "moment";
 import { useState } from "react";
-import { AnimatedFlatList, AnimationType } from "flatlist-intro-animations";
+import { userTasks } from "../../../../services/redux/slices/taskSlice";
+import { getFilterTasksAction } from "../../../../modules/getFilterTasksAction";
+import { StaticActionConst } from "../../../../modules/getTasksCountFromAction";
 
-export default function Tasks() {
+export default function Tasks({ actionName, categoryID = null }) {
   const [selectedDate, setSelectedDate] = useState(
     moment().format("YYYY/MM/DD")
   );
-  const stateUserTasks = useSelector(
-    (state) =>
-      Object.keys(state.task.userTasks).reduce((arr, key) => {
-        if (state.task.userTasks[key]["date"] === selectedDate)
-          arr.push(state.task.userTasks[key]);
-        return arr;
-      }, []),
-    shallowEqual
-  );
-  const complete_count = useSelector(
-    (state) =>
-      Object.keys(state.task.userTasks).reduce((arr, key) => {
-        if (
-          state.task.userTasks[key]["is_finish"] === true &&
-          state.task.userTasks[key]["date"] === selectedDate
-        )
-          arr.push(state.task.userTasks[key]);
-        return arr;
-      }, []),
-    shallowEqual
-  );
+  const stateUserTasks = useSelector(userTasks);
+  const userTasksList = getFilterTasksAction({
+    data: stateUserTasks,
+    date: selectedDate,
+    actionName: actionName,
+    actionValue:
+      actionName === StaticActionConst.FLAG
+        ? true
+        : actionName === StaticActionConst.CATEGORY
+        ? categoryID
+        : null,
+  });
+  const complete_count = userTasksList.filter((e) => e.is_finish === true);
   return (
     <>
       <HeaderTask
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
       />
-      {!stateUserTasks || stateUserTasks?.length === 0 ? (
+      {!userTasksList || userTasksList?.length === 0 ? (
         <Box
           style={{
             width: "100%",
@@ -74,7 +68,7 @@ export default function Tasks() {
           <Progress
             colorScheme="blue"
             size="md"
-            value={(complete_count.length / stateUserTasks?.length) * 100}
+            value={(complete_count.length / userTasksList?.length) * 100}
           />
           <Heading
             width={"100%"}
@@ -86,7 +80,7 @@ export default function Tasks() {
             mb={2}
             style={{ float: "right" }}
           >
-            {complete_count.length}/{stateUserTasks?.length}
+            {complete_count.length}/{userTasksList?.length}
           </Heading>
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -96,7 +90,7 @@ export default function Tasks() {
               flexGrow: 1,
               justifyContent: "flex-end",
             }}
-            data={stateUserTasks}
+            data={userTasksList}
             renderItem={(item) => (
               <TaskItem item={item.item} index={item.index} />
             )}

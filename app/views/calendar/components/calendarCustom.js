@@ -58,7 +58,6 @@ const CalendarScreen = () => {
 
   const onDayPress = useCallback((day) => {
     setSelected(day.dateString);
-    // console.log(moment(day.dateString).format("YYYY/MM/DD"));
   }, []);
 
   const marked = useMemo(() => {

@@ -13,10 +13,11 @@ import {
   StaticActionConst,
   getTasksCountFromAction,
 } from "../../../modules/getTasksCountFromAction";
+import { useNavigation } from "@react-navigation/native";
 
 export default function StaticAction() {
   const stateTaskList = useSelector(userTasks);
-
+  const navigation = useNavigation();
   const StackActionData = [
     {
       id: 1,
@@ -47,7 +48,13 @@ export default function StaticAction() {
     <HStack space={"4%"} style={{ marginBottom: 18 }}>
       {StackActionData.map((data) => {
         return (
-          <TouchableOpacity style={{ width: "48%" }} key={data.id}>
+          <TouchableOpacity
+            style={{ width: "48%" }}
+            key={data.id}
+            onPress={() => {
+              navigation.navigate("Tasks", { actionName: data.action });
+            }}
+          >
             <Box
               style={{
                 height: 92,

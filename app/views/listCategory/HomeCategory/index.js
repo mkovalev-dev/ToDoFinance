@@ -1,9 +1,12 @@
-import { Box } from "native-base";
+import { Box, Text, View } from "native-base";
 import { COLORS_PRIMARY, SECONDARY_GRADIENT } from "../../../modules/colors";
 import { PADDING } from "../../../modules/padding";
-import Tasks from "./components/tasks";
+import Today from "../../today/today";
+import StaticAction from "../../taskCategory/components/StaticAction";
+import Header from "../../taskCategory/components/header";
+import CategoryList from "./components/categoryList";
 
-export default function TasksScreen({ route }) {
+export default function HomeCategory() {
   return (
     <Box
       _light={{
@@ -18,10 +21,10 @@ export default function TasksScreen({ route }) {
         paddingTop: 56,
       }}
     >
-      <Tasks
-        actionName={route.params.actionName}
-        categoryID={route.params?.categoryId}
-      />
+      <Today />
+      <StaticAction />
+      <Header />
+      <CategoryList />
     </Box>
   );
 }
