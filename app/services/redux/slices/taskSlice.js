@@ -28,11 +28,12 @@ const taskSlice = createSlice({
      * Создает новую задачу.
      */
     setUserTask: (state, action) => {
-      let index = state.userTasks.length + 1;
+      let index = Math.random().toString(16).slice(2);
       state.userTasks = [
         ...state.userTasks,
         {
           id: index,
+          key: index,
           name: action.payload.name,
           date: action.payload.date,
           is_finish: false,
@@ -70,16 +71,31 @@ const taskSlice = createSlice({
      * Добавляет новый список.
      */
     setNewCategory: (state, action) => {
-      let index = state.userCategory.length + 1;
+      let index = Math.random().toString(16).slice(2);
+      console.log(index);
       state.userCategory = [
         ...state.userCategory,
         {
           id: index,
+          key: index,
           name: action.payload.name,
           color: action.payload.color,
           icon: action.payload.icon,
         },
       ];
+    },
+
+    /**
+     * Удаляет список.
+     */
+    setDeleteCategory: (state, action) => {
+      const index = getListIndex({
+        taskList: state.userCategory,
+        id: action.payload,
+      });
+      if (index) {
+        state.userCategory.splice(index, 1);
+      }
     },
   },
   extraReducers: {},
@@ -91,6 +107,7 @@ export const {
   setUserTask,
   setDeleteTask,
   setNewCategory,
+  setDeleteCategory,
 } = taskSlice.actions;
 export const userTasks = (state) => state.task.userTasks;
 export const userCategory = (state) => state.task.userCategory;

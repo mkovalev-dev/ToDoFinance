@@ -8,14 +8,19 @@ import {
   getTasksCountFromAction,
   StaticActionConst,
 } from "../../../../modules/getTasksCountFromAction";
-import { TouchableOpacity } from "react-native";
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export default function CategoryListItem({ item }) {
   const userTaskList = useSelector(userTasks);
   const navigation = useNavigation();
   return (
-    <TouchableOpacity
+    <TouchableWithoutFeedback
+      key={item.id}
       onPress={() => {
         navigation.navigate("Tasks", {
           actionName: StaticActionConst.CATEGORY,
@@ -82,6 +87,6 @@ export default function CategoryListItem({ item }) {
           />
         </HStack>
       </Box>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 }
