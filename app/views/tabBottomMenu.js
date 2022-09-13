@@ -2,9 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "./homeStack";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../modules/colors";
-import { Box, Text } from "native-base";
-import CalendarScreen from "./calendar";
 import AddTask from "./task/addTask";
+import CalendarStack from "./calendar/CalendarStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +42,7 @@ export default function TabBottomMenu() {
     >
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="AddTask" component={AddTask} />
-      <Tab.Screen name="Calendar" component={CalendarScreen} />
+      <Tab.Screen name="Calendar" component={CalendarStack} />
     </Tab.Navigator>
   );
 }

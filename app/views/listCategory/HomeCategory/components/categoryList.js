@@ -66,7 +66,9 @@ export default function CategoryList() {
       closeOnRowBeginSwipe
       onRowOpen={(rowKey, rowMap) => {
         setTimeout(() => {
-          rowMap[rowKey].closeRow();
+          try {
+            rowMap[rowKey].closeRow();
+          } catch (e) {}
         }, 2000);
       }}
     />

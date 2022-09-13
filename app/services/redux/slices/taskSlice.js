@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 let initialState = {
   userTasks: [],
   userCategory: [],
+  userCalendarDate: [],
 };
 
 /**
@@ -72,7 +73,6 @@ const taskSlice = createSlice({
      */
     setNewCategory: (state, action) => {
       let index = Math.random().toString(16).slice(2);
-      console.log(index);
       state.userCategory = [
         ...state.userCategory,
         {
@@ -97,6 +97,39 @@ const taskSlice = createSlice({
         state.userCategory.splice(index, 1);
       }
     },
+
+    /**
+     * Создает важную дату.
+     */
+    setCalendarDate: (state, action) => {
+      let index = Math.random().toString(16).slice(2);
+      if (!state.userCalendarDate) {
+        state.userCalendarDate = [];
+      }
+      state.userCalendarDate = [
+        ...state.userCalendarDate,
+        {
+          id: index,
+          key: index,
+          name: action.payload.name,
+          color: action.payload.color,
+          date: action.payload.date,
+        },
+      ];
+    },
+
+    /**
+     * Удаляет важную дату.
+     */
+    setDeleteCalendarDate: (state, action) => {
+      const index = getListIndex({
+        taskList: state.userCalendarDate,
+        id: action.payload,
+      });
+      if (index) {
+        state.userCalendarDate.splice(index, 1);
+      }
+    },
   },
   extraReducers: {},
 });
@@ -108,6 +141,9 @@ export const {
   setDeleteTask,
   setNewCategory,
   setDeleteCategory,
+  setCalendarDate,
+  setDeleteCalendarDate,
 } = taskSlice.actions;
 export const userTasks = (state) => state.task.userTasks;
 export const userCategory = (state) => state.task.userCategory;
+export const userCalendarDate = (state) => state.task.userCalendarDate;
