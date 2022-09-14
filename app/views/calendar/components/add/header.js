@@ -7,7 +7,7 @@ import moment from "moment";
 import { Spacer } from "native-base/src/components/primitives/Flex";
 import { useDispatch } from "react-redux";
 
-export default function Header({ color, name, date }) {
+export default function Header({ color, name, date, time }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   return (
@@ -29,6 +29,7 @@ export default function Header({ color, name, date }) {
               name: name,
               color: color,
               date: moment(date).format("YYYY-MM-DD"),
+              time: time,
             })
           );
           navigation.goBack();

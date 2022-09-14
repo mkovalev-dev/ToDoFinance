@@ -2,6 +2,7 @@ import { Box, Heading, HStack, Text } from "native-base";
 import React from "react";
 import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../../../modules/colors";
 import { PADDING } from "../../../modules/padding";
+import { Spacer } from "native-base/src/components/primitives/Flex";
 
 export default function CalendarLegendItem({ item }) {
   return (
@@ -40,6 +41,13 @@ export default function CalendarLegendItem({ item }) {
         >
           {item.name}
         </Heading>
+        <Spacer />
+        <Text
+          _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+          _light={{ color: COLORS_GRAYSCALE.HEADER }}
+        >
+          {item.time}
+        </Text>
       </HStack>
     </Box>
   );

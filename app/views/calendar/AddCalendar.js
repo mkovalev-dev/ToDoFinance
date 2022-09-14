@@ -12,6 +12,7 @@ import { useState } from "react";
 import DatePicker from "react-native-modern-datepicker";
 import { ScrollView } from "react-native";
 import moment from "moment";
+import DateTimePicker from "@react-native-community/datetimepicker";
 const colorList = [
   { id: 1, color: "#eb5645" },
   { id: 2, color: "#f3a43c" },
@@ -32,6 +33,7 @@ export default function AddCalendar() {
   const [selectedDate, setSelectedDate] = useState(
     moment().format("YYYY/MM/DD")
   );
+  const [selectedTime, setSelectedTime] = useState(moment().format("HH:mm"));
   return (
     <Box
       _light={{
@@ -45,7 +47,12 @@ export default function AddCalendar() {
         padding: PADDING.ALL,
       }}
     >
-      <Header color={selectedColor} name={name} date={selectedDate} />
+      <Header
+        color={selectedColor}
+        name={name}
+        date={selectedDate}
+        time={selectedTime}
+      />
       <ScrollView
         style={{ marginBottom: 80 }}
         showsVerticalScrollIndicator={false}
@@ -87,11 +94,11 @@ export default function AddCalendar() {
             width: "100%",
             minHeight: 55,
             padding: PADDING.ALL,
-            paddingBottom: 0,
+            // paddingBottom: 0,
             borderRadius: 12,
           }}
         >
-          <HStack space={2}>
+          <HStack space={2} justifyContent={"center"} alignItems={"center"}>
             <Icon
               as={AntDesign}
               size={7}
@@ -107,45 +114,56 @@ export default function AddCalendar() {
               _dark={{ color: COLORS_GRAYSCALE.HEADER }}
               _light={{ color: COLORS_GRAYSCALE.HEADER }}
               size={"md"}
-              mb={4}
             >
               Дата:
             </Heading>
+            <DateTimePicker
+              locale="ru-RU"
+              display={"compact"}
+              style={{ flex: 1 }}
+              testID="dateTimePicker"
+              value={new Date(selectedDate)}
+              mode={"datetime"}
+              is24Hour={true}
+              onChange={(event, date) => {
+                setSelectedDate(moment(date).format("YYYY/MM/DD HH:mm"));
+                setSelectedTime(moment(date).format("HH:mm"));
+              }}
+            />
           </HStack>
-          <DatePicker
-            mode={"calendar"}
-            onSelectedChange={(date) => setSelectedDate(date)}
-            options={{
-              mainColor: COLORS_PRIMARY.DEFAULT,
-            }}
-            configs={{
-              dayNames: [
-                "Воскресенье",
-                "Понедельник",
-                "Вторник",
-                "Среда",
-                "Четверг",
-                "Пятница",
-                "Суббота",
-              ],
-              dayNamesShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-              monthNames: [
-                "Январь",
-                "Февраль",
-                "Март",
-                "Апрель",
-                "Май",
-                "Июнь",
-                "Июль",
-                "Август",
-                "Сентябрь",
-                "Октябрь",
-                "Ноябрь",
-                "Декабрь",
-              ],
-            }}
-          />
-          )}
+          {/*<DatePicker*/}
+          {/*  mode={"calendar"}*/}
+          {/*  onSelectedChange={(date) => setSelectedDate(date)}*/}
+          {/*  options={{*/}
+          {/*    mainColor: COLORS_PRIMARY.DEFAULT,*/}
+          {/*  }}*/}
+          {/*  configs={{*/}
+          {/*    dayNames: [*/}
+          {/*      "Воскресенье",*/}
+          {/*      "Понедельник",*/}
+          {/*      "Вторник",*/}
+          {/*      "Среда",*/}
+          {/*      "Четверг",*/}
+          {/*      "Пятница",*/}
+          {/*      "Суббота",*/}
+          {/*    ],*/}
+          {/*    dayNamesShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],*/}
+          {/*    monthNames: [*/}
+          {/*      "Январь",*/}
+          {/*      "Февраль",*/}
+          {/*      "Март",*/}
+          {/*      "Апрель",*/}
+          {/*      "Май",*/}
+          {/*      "Июнь",*/}
+          {/*      "Июль",*/}
+          {/*      "Август",*/}
+          {/*      "Сентябрь",*/}
+          {/*      "Октябрь",*/}
+          {/*      "Ноябрь",*/}
+          {/*      "Декабрь",*/}
+          {/*    ],*/}
+          {/*  }}*/}
+          {/*/>*/}
         </Box>
         <Box
           _light={{

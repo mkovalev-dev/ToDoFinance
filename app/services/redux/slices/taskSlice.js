@@ -114,6 +114,7 @@ const taskSlice = createSlice({
           name: action.payload.name,
           color: action.payload.color,
           date: action.payload.date,
+          time: action.payload.time,
         },
       ];
     },
