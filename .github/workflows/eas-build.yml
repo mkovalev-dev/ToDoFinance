@@ -24,3 +24,25 @@ jobs:
         run: npm ci --legacy-peer-deps
       - name: Build on EAS
         run: expo publish
+
+  tag:
+    name: Tag
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: master
+          default_bump: minor
+          default_prerelease_bump: preminor
+          pre_release_branches: develop
+          custom_release_rules: master:minor,develop:patch
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
