@@ -1,8 +1,8 @@
-import { Heading, HStack, Icon, Text } from "native-base";
+import { Box, Heading, HStack, Icon, Text } from "native-base";
 import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../../../../modules/colors";
 import { Spacer } from "native-base/src/components/primitives/Flex";
-import { TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
@@ -13,6 +13,21 @@ export default function HeaderTask({ selectedDate, setSelectedDate }) {
   return (
     <>
       <HStack alignItems="center" justifyContent="center" space={1}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Icon
+            as={FontAwesome5}
+            size={7}
+            name={"chevron-left"}
+            textAlign={"center"}
+            _light={{ color: COLORS_GRAYSCALE.HEADER }}
+            _dark={{ color: "white" }}
+            mr={4}
+          />
+        </TouchableWithoutFeedback>
         <Heading
           _dark={{ color: "white" }}
           _light={{ color: COLORS_GRAYSCALE.HEADER }}

@@ -1,10 +1,14 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Calendar, CalendarUtils } from "react-native-calendars";
 import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../../../modules/colors";
-import { View } from "native-base";
+import { Box, Heading, View } from "native-base";
 import { LocaleConfig } from "react-native-calendars/src/index";
+import moment from "moment";
+import { useSelector } from "react-redux";
+import { userCalendarDate } from "../../../services/redux/slices/taskSlice";
+import CalendarLegend from "./CalendarLegend";
 
-const INITIAL_DATE = "2022-09-03";
+const INITIAL_DATE = moment().format("YYYY-MM-DD");
 LocaleConfig.locales["ru"] = {
   monthNames: [
     "Январь",
@@ -49,32 +53,36 @@ LocaleConfig.locales["ru"] = {
 LocaleConfig.defaultLocale = "ru";
 const CalendarScreen = () => {
   const [selected, setSelected] = useState(INITIAL_DATE);
-
+  const userCalendarDates = useSelector(userCalendarDate);
+  const [formatedDates, setFormatedDates] = useState({});
+  useEffect(() => {
+    let customDate = {};
+    userCalendarDates.map((params) => {
+      customDate = Object.assign({}, customDate, {
+        [params.date]: { dotColor: params.color, marked: true },
+      });
+    });
+    setFormatedDates(customDate);
+  }, [userCalendarDates]);
   const getDate = (count) => {
     const date = new Date(INITIAL_DATE);
     const newDate = date.setDate(date.getDate() + count);
     return CalendarUtils.getCalendarDateString(newDate);
   };
-
   const onDayPress = useCallback((day) => {
     setSelected(day.dateString);
-    // console.log(moment(day.dateString).format("YYYY/MM/DD"));
   }, []);
 
   const marked = useMemo(() => {
-    return {
-      // [getDate(-1)]: {
-      //   dotColor: "red",
-      //   marked: true,
-      // },
+    return Object.assign({}, formatedDates, {
       [selected]: {
         selected: true,
         disableTouchEvent: true,
         selectedColor: COLORS_PRIMARY.DEFAULT,
         selectedTextColor: "white",
       },
-    };
-  }, [selected]);
+    });
+  }, [selected, formatedDates, userCalendarDates]);
 
   return (
     <View>
@@ -106,6 +114,17 @@ const CalendarScreen = () => {
           },
         }}
       />
+      <Heading
+        _dark={{ color: "white" }}
+        _light={{ color: COLORS_GRAYSCALE.HEADER }}
+        size={"lg"}
+        style={{ marginBottom: 18 }}
+      >
+        {selected === moment().format("YYYY-MM-DD")
+          ? "Сегодня"
+          : moment(selected).format("DD-MM-YYYY")}
+      </Heading>
+      <CalendarLegend selectedDate={selected} dates={userCalendarDates} />
     </View>
   );
 };

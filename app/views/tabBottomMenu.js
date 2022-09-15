@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeStack from "./home";
+import HomeStack from "./homeStack";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../modules/colors";
-import { Text } from "native-base";
-import CalendarScreen from "./calendar";
+import AddTask from "./task/addTask";
+import CalendarStack from "./calendar/CalendarStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,10 +19,12 @@ export default function TabBottomMenu() {
 
           if (route.name === "Home") {
             iconName = "home";
+          } else if (route.name === "AddTask") {
+            iconName = "add";
           } else if (route.name === "Calendar") {
             iconName = "calendar";
           }
-          return <Ionicons name={iconName} size={28} color={color} />;
+          return <Ionicons name={iconName} size={32} color={color} />;
         },
         tabBarStyle: {
           height: 80,
@@ -39,7 +41,8 @@ export default function TabBottomMenu() {
       })}
     >
       <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Calendar" component={CalendarScreen} />
+      <Tab.Screen name="AddTask" component={AddTask} />
+      <Tab.Screen name="Calendar" component={CalendarStack} />
     </Tab.Navigator>
   );
 }
