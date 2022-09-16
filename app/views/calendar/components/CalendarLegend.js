@@ -34,9 +34,9 @@ export default function CalendarLegend({ selectedDate, dates }) {
         minHeight: 50,
         maxHeight: 300,
         width: "100%",
-        // backgroundColor: COLORS_GRAYSCALE.WHITE,
+        backgroundColor: null,
         borderRadius: 12,
-        padding: 20,
+        padding: 0,
       }}
       _light={{
         backgroundColor: COLORS_GRAYSCALE.WHITE,
@@ -100,15 +100,17 @@ const styles = StyleSheet.create({
     height: 50,
   },
   rowBack: {
-    width: "100%",
+    width: "98%",
     height: 50,
     marginTop: 5,
     marginBottom: 5,
+    marginLeft: 5,
+    marginRight: 5,
     borderRadius: 13,
     backgroundColor: COLORS_GRAYSCALE.WHITE,
     justifyContent: "center",
-    paddingTop: 5,
-    paddingBottom: 5,
+    // paddingTop: 5,
+    // paddingBottom: 5,
   },
   backRightBtn: {
     alignItems: "center",
