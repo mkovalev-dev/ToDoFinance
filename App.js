@@ -46,15 +46,17 @@ export default function App() {
       try {
         checkViewOnboarding();
       } catch (e) {
-        console.warn(e);
+        // console.warn(e);
       } finally {
         setAppIsReady(true);
-        await SplashScreen.hideAsync();
+        if (appIsReady) {
+          await SplashScreen.hideAsync();
+        }
       }
     }
 
     prepare();
-  }, []);
+  }, [appIsReady, viewOnboarding]);
 
   return (
     <Provider store={store}>
