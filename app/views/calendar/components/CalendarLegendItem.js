@@ -14,7 +14,6 @@ export default function CalendarLegendItem({ item }) {
         marginBottom: 5,
         borderRadius: 12,
         borderWidth: 1,
-        backgroundColor: "white",
         justifyContent: "center",
         paddingTop: 5,
         paddingBottom: 5,
@@ -22,8 +21,14 @@ export default function CalendarLegendItem({ item }) {
         paddingRight: 15,
         borderColor: COLORS_PRIMARY.DEFAULT,
       }}
-      _light={{ borderColor: COLORS_PRIMARY.DEFAULT }}
-      _dark={{ borderColor: COLORS_PRIMARY.DEFAULT }}
+      _light={{
+        borderColor: COLORS_PRIMARY.DEFAULT,
+        backgroundColor: COLORS_GRAYSCALE.WHITE,
+      }}
+      _dark={{
+        borderColor: COLORS_PRIMARY.DEFAULT,
+        backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
+      }}
     >
       <HStack alignItems={"center"} space={4}>
         <Box
@@ -35,7 +40,7 @@ export default function CalendarLegendItem({ item }) {
           }}
         ></Box>
         <Heading
-          _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+          _dark={{ color: COLORS_GRAYSCALE.WHITE }}
           _light={{ color: COLORS_GRAYSCALE.HEADER }}
           size={"md"}
         >
@@ -43,7 +48,7 @@ export default function CalendarLegendItem({ item }) {
         </Heading>
         <Spacer />
         <Text
-          _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+          _dark={{ color: COLORS_GRAYSCALE.WHITE }}
           _light={{ color: COLORS_GRAYSCALE.HEADER }}
         >
           {item.time}

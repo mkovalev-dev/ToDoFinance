@@ -136,10 +136,17 @@ export default function OnboardingScreen() {
             }}
           >
             <HStack space={2}>
-              <Text _light={{ color: "white" }} _dark={{ color: "white" }}>
+              <Text
+                _light={{ color: COLORS_GRAYSCALE.WHITE }}
+                _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+              >
                 К планам
               </Text>
-              <AntDesign name="arrowright" size={24} color="white" />
+              <AntDesign
+                name="arrowright"
+                size={24}
+                color={COLORS_GRAYSCALE.WHITE}
+              />
             </HStack>
           </LinearGradient>
         </TouchableOpacity>
@@ -175,10 +182,17 @@ export default function OnboardingScreen() {
               }}
             >
               <HStack space={2}>
-                <Text _light={{ color: "white" }} _dark={{ color: "white" }}>
+                <Text
+                  _light={{ color: COLORS_GRAYSCALE.WHITE }}
+                  _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+                >
                   Далее
                 </Text>
-                <AntDesign name="arrowright" size={24} color="white" />
+                <AntDesign
+                  name="arrowright"
+                  size={24}
+                  color={COLORS_GRAYSCALE.WHITE}
+                />
               </HStack>
             </LinearGradient>
           </TouchableOpacity>

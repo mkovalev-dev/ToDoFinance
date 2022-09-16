@@ -59,14 +59,15 @@ export default function AddCalendar() {
       >
         <Box
           _light={{
-            backgroundColor: "white",
+            backgroundColor: COLORS_GRAYSCALE.WHITE,
           }}
           _dark={{
-            backgroundColor: "white",
+            backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
           }}
           style={{ borderRadius: 12, padding: 24 }}
         >
           <Input
+            placeholderTextColor={COLORS_GRAYSCALE.PLACEHOLDER}
             height={55}
             borderRadius={12}
             variant="filled"
@@ -76,12 +77,12 @@ export default function AddCalendar() {
             placeholder={"Название"}
             clearButtonMode="always"
             _light={{
-              backgroundColor: COLORS_GRAYSCALE.LINE,
+              backgroundColor: COLORS_GRAYSCALE.INPUT,
               color: COLORS_GRAYSCALE.HEADER,
             }}
             _dark={{
               color: COLORS_GRAYSCALE.HEADER,
-              backgroundColor: COLORS_GRAYSCALE.LINE,
+              backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
               borderColor: COLORS_GRAYSCALE.LINE,
             }}
             onChangeText={setName}
@@ -90,12 +91,16 @@ export default function AddCalendar() {
         <Box
           mt={4}
           style={{
-            backgroundColor: "#fff",
             width: "100%",
             minHeight: 55,
             padding: PADDING.ALL,
-            // paddingBottom: 0,
             borderRadius: 12,
+          }}
+          _light={{
+            backgroundColor: COLORS_GRAYSCALE.WHITE,
+          }}
+          _dark={{
+            backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
           }}
         >
           <HStack space={2} justifyContent={"center"} alignItems={"center"}>
@@ -111,7 +116,7 @@ export default function AddCalendar() {
               }}
             />
             <Heading
-              _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+              _dark={{ color: COLORS_GRAYSCALE.WHITE }}
               _light={{ color: COLORS_GRAYSCALE.HEADER }}
               size={"md"}
             >
@@ -131,59 +136,45 @@ export default function AddCalendar() {
               }}
             />
           </HStack>
-          {/*<DatePicker*/}
-          {/*  mode={"calendar"}*/}
-          {/*  onSelectedChange={(date) => setSelectedDate(date)}*/}
-          {/*  options={{*/}
-          {/*    mainColor: COLORS_PRIMARY.DEFAULT,*/}
-          {/*  }}*/}
-          {/*  configs={{*/}
-          {/*    dayNames: [*/}
-          {/*      "Воскресенье",*/}
-          {/*      "Понедельник",*/}
-          {/*      "Вторник",*/}
-          {/*      "Среда",*/}
-          {/*      "Четверг",*/}
-          {/*      "Пятница",*/}
-          {/*      "Суббота",*/}
-          {/*    ],*/}
-          {/*    dayNamesShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],*/}
-          {/*    monthNames: [*/}
-          {/*      "Январь",*/}
-          {/*      "Февраль",*/}
-          {/*      "Март",*/}
-          {/*      "Апрель",*/}
-          {/*      "Май",*/}
-          {/*      "Июнь",*/}
-          {/*      "Июль",*/}
-          {/*      "Август",*/}
-          {/*      "Сентябрь",*/}
-          {/*      "Октябрь",*/}
-          {/*      "Ноябрь",*/}
-          {/*      "Декабрь",*/}
-          {/*    ],*/}
-          {/*  }}*/}
-          {/*/>*/}
         </Box>
         <Box
           _light={{
-            backgroundColor: "white",
+            backgroundColor: COLORS_GRAYSCALE.WHITE,
           }}
           _dark={{
-            backgroundColor: "white",
+            backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
           }}
-          style={{ borderRadius: 12, padding: 24 }}
+          style={{ borderRadius: 12, padding: PADDING.ALL }}
           mt={4}
         >
-          <Heading
-            color={COLORS_GRAYSCALE.HEADER}
-            size={"md"}
-            width={"100%"}
+          <HStack
+            space={2}
+            justifyContent={"left"}
+            alignItems={"center"}
             mb={4}
           >
-            Цвет на календаре:
-          </Heading>
-          <HStack flexWrap={"wrap"} style={{ maxWidth: "100%" }} space={1.5}>
+            <Icon
+              as={AntDesign}
+              size={7}
+              name="bulb1"
+              _light={{
+                color: COLORS_PRIMARY.DEFAULT,
+              }}
+              _dark={{
+                color: COLORS_PRIMARY.DEFAULT,
+              }}
+            />
+            <Heading
+              _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+              _light={{ color: COLORS_GRAYSCALE.HEADER }}
+              size={"md"}
+              // width={"100%"}
+            >
+              Цвет на календаре:
+            </Heading>
+          </HStack>
+
+          <HStack flexWrap={"wrap"} style={{ maxWidth: "100%" }} space={2.5}>
             {colorList.map((value) => {
               return (
                 <ColorRadioItem

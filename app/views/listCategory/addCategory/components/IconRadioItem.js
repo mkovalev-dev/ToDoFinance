@@ -25,22 +25,23 @@ export default function IconRadioItem({
         style={{
           height: 40,
           width: 40,
-          backgroundColor: "#333333",
           borderRadius: 100,
           justifyContent: "center",
           alignItems: "center",
         }}
+        _dark={{ backgroundColor: COLORS_GRAYSCALE.HEADER }}
+        _light={{ backgroundColor: COLORS_GRAYSCALE.HEADER }}
       >
         <Icon
           as={FontAwesome5}
-          size={7}
+          size={6}
           name={value.icon}
           textAlign={"center"}
           _light={{
-            color: "white",
+            color: COLORS_GRAYSCALE.WHITE,
           }}
           _dark={{
-            color: "white",
+            color: COLORS_GRAYSCALE.WHITE,
           }}
         />
       </Box>
@@ -64,22 +65,24 @@ export default function IconRadioItem({
           style={{
             height: 40,
             width: 40,
-            backgroundColor: "#333333",
+            // backgroundColor: "#333333",
             borderRadius: 100,
             justifyContent: "center",
             alignItems: "center",
           }}
+          _dark={{ backgroundColor: COLORS_GRAYSCALE.HEADER }}
+          _light={{ backgroundColor: COLORS_GRAYSCALE.HEADER }}
         >
           <Icon
             as={FontAwesome5}
-            size={7}
+            size={6}
             name={value.icon}
             textAlign={"center"}
             _light={{
-              color: "white",
+              color: COLORS_GRAYSCALE.WHITE,
             }}
             _dark={{
-              color: "white",
+              color: COLORS_GRAYSCALE.WHITE,
             }}
           />
         </Box>

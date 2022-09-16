@@ -44,7 +44,7 @@ export default function Tasks({ actionName, categoryID = null }) {
             marginTop: 22,
           }}
           _light={{ borderColor: COLORS_PRIMARY.DEFAULT }}
-          _dark={{ borderColor: "white" }}
+          _dark={{ borderColor: COLORS_GRAYSCALE.WHITE }}
         >
           <Text
             style={{ textAlign: "center" }}
@@ -57,7 +57,7 @@ export default function Tasks({ actionName, categoryID = null }) {
       ) : (
         <>
           <Heading
-            _dark={{ color: "white" }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"sm"}
             mt={4}
@@ -73,7 +73,7 @@ export default function Tasks({ actionName, categoryID = null }) {
           <Heading
             width={"100%"}
             textAlign={"right"}
-            _dark={{ color: "white" }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"xs"}
             mt={2}

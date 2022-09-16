@@ -24,7 +24,7 @@ export default function TodayItems({ item }) {
           }}
         ></Box>
         <Heading
-          _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+          _dark={{ color: COLORS_GRAYSCALE.WHITE }}
           _light={{ color: COLORS_GRAYSCALE.HEADER }}
           size={"sm"}
         >
@@ -32,7 +32,7 @@ export default function TodayItems({ item }) {
         </Heading>
         <Spacer />
         <Text
-          _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+          _dark={{ color: COLORS_GRAYSCALE.WHITE }}
           _light={{ color: COLORS_GRAYSCALE.HEADER }}
         >
           {item.time}

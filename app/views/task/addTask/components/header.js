@@ -9,7 +9,7 @@ export default function Header() {
   const navigation = useNavigation();
   return (
     <Heading
-      _dark={{ color: "white" }}
+      _dark={{ color: COLORS_GRAYSCALE.WHITE }}
       _light={{ color: COLORS_GRAYSCALE.HEADER }}
       size={"lg"}
       style={{ marginBottom: 18 }}

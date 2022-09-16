@@ -59,10 +59,11 @@ export default function StaticAction() {
               style={{
                 height: 92,
                 width: "100%",
-                backgroundColor: "white",
                 borderRadius: 12,
                 padding: 12,
               }}
+              _dark={{ backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME }}
+              _light={{ backgroundColor: COLORS_GRAYSCALE.WHITE }}
             >
               <Box
                 size={9}
@@ -94,8 +95,9 @@ export default function StaticAction() {
                   position: "absolute",
                   bottom: 10,
                   left: 10,
-                  color: COLORS_GRAYSCALE.PLACEHOLDER,
                 }}
+                _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+                _light={{ color: COLORS_GRAYSCALE.HEADER }}
               >
                 {data.name}
               </Heading>
@@ -105,8 +107,9 @@ export default function StaticAction() {
                   position: "absolute",
                   top: 10,
                   right: 10,
-                  color: COLORS_GRAYSCALE.HEADER,
                 }}
+                _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+                _light={{ color: COLORS_GRAYSCALE.HEADER }}
               >
                 {data.count}
               </Heading>

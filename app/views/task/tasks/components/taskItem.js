@@ -63,12 +63,12 @@ export default function TaskItem({ item, index }) {
           marginTop: 22,
         }}
         _light={{ borderColor: COLORS_PRIMARY.DEFAULT }}
-        _dark={{ borderColor: "white" }}
+        _dark={{ borderColor: COLORS_GRAYSCALE.WHITE }}
       >
         <HStack alignItems="center" justifyContent="center" space={2}>
           <Heading
             strikeThrough={isFinish}
-            _dark={{ color: "white" }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"sm"}
           >

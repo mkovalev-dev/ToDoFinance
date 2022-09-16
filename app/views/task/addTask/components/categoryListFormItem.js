@@ -1,4 +1,8 @@
-import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../../../../modules/colors";
+import {
+  COLORS_GRAYSCALE,
+  COLORS_PRIMARY,
+  SECONDARY_GRADIENT,
+} from "../../../../modules/colors";
 import { Box, Heading, HStack, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { TouchableWithoutFeedback } from "react-native";
@@ -21,12 +25,17 @@ export default function CategoryListFormItem({
           marginTop: 5,
           marginBottom: 5,
           borderRadius: 12,
-          backgroundColor: COLORS_GRAYSCALE.INPUT,
           justifyContent: "center",
           paddingTop: 5,
           paddingBottom: 5,
           paddingLeft: 15,
           paddingRight: 15,
+        }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.INPUT,
+        }}
+        _dark={{
+          backgroundColor: SECONDARY_GRADIENT.START,
         }}
       >
         <HStack alignItems={"center"} space={2}>
@@ -42,18 +51,22 @@ export default function CategoryListFormItem({
           >
             <Icon
               as={FontAwesome5}
-              size={7}
+              size={6}
               name={item.icon}
               textAlign={"center"}
               _light={{
-                color: "white",
+                color: COLORS_GRAYSCALE.WHITE,
               }}
               _dark={{
-                color: "white",
+                color: COLORS_GRAYSCALE.WHITE,
               }}
             />
           </Box>
-          <Heading size={"sm"} color={COLORS_GRAYSCALE.HEADER}>
+          <Heading
+            size={"sm"}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+            _light={{ color: COLORS_GRAYSCALE.HEADER }}
+          >
             {item.name}
           </Heading>
         </HStack>
@@ -69,12 +82,17 @@ export default function CategoryListFormItem({
         borderRadius: 12,
         borderWidth: 2,
         borderColor: COLORS_PRIMARY.DEFAULT,
-        backgroundColor: COLORS_GRAYSCALE.INPUT,
         justifyContent: "center",
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 15,
         paddingRight: 15,
+      }}
+      _light={{
+        backgroundColor: COLORS_GRAYSCALE.INPUT,
+      }}
+      _dark={{
+        backgroundColor: SECONDARY_GRADIENT.START,
       }}
     >
       <HStack alignItems={"center"} space={2}>
@@ -90,18 +108,22 @@ export default function CategoryListFormItem({
         >
           <Icon
             as={FontAwesome5}
-            size={7}
+            size={6}
             name={item.icon}
             textAlign={"center"}
             _light={{
-              color: "white",
+              color: COLORS_GRAYSCALE.WHITE,
             }}
             _dark={{
-              color: "white",
+              color: COLORS_GRAYSCALE.WHITE,
             }}
           />
         </Box>
-        <Heading size={"sm"} color={COLORS_GRAYSCALE.HEADER}>
+        <Heading
+          size={"sm"}
+          _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+          _light={{ color: COLORS_GRAYSCALE.HEADER }}
+        >
           {item.name}
         </Heading>
       </HStack>
