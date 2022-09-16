@@ -24,12 +24,12 @@ export default function HeaderTask({ selectedDate, setSelectedDate }) {
             name={"chevron-left"}
             textAlign={"center"}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
-            _dark={{ color: "white" }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             mr={4}
           />
         </TouchableWithoutFeedback>
         <Heading
-          _dark={{ color: "white" }}
+          _dark={{ color: COLORS_GRAYSCALE.WHITE }}
           _light={{ color: COLORS_GRAYSCALE.HEADER }}
           size={"lg"}
         >

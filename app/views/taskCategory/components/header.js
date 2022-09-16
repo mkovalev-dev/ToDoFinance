@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <HStack alignItems="center" justifyContent="center" space={1}>
       <Heading
-        _dark={{ color: "white" }}
+        _dark={{ color: COLORS_GRAYSCALE.WHITE }}
         _light={{ color: COLORS_GRAYSCALE.HEADER }}
         size={"lg"}
       >
@@ -28,7 +28,7 @@ export default function Header() {
             color: COLORS_PRIMARY.DEFAULT,
           }}
           _dark={{
-            color: COLORS_PRIMARY.BACKGROUND_LIGHT,
+            color: COLORS_GRAYSCALE.WHITE,
           }}
         />
       </TouchableOpacity>

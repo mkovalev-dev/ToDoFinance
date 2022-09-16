@@ -1,4 +1,4 @@
-import { Box, Container, Input, Text, Radio, HStack, Icon } from "native-base";
+import { Box, Container, Text, Radio, HStack, Icon, Input } from "native-base";
 import {
   COLORS_GRAYSCALE,
   COLORS_PRIMARY,
@@ -73,10 +73,10 @@ export default function AddCategory() {
       <Header data={{ name: name, color: selectedColor, icon: selectedIcon }} />
       <Box
         _light={{
-          backgroundColor: "white",
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
         }}
         _dark={{
-          backgroundColor: "white",
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
         style={{ borderRadius: 12, padding: 24 }}
       >
@@ -97,10 +97,10 @@ export default function AddCategory() {
               name={selectedIcon}
               textAlign={"center"}
               _light={{
-                color: "white",
+                color: COLORS_GRAYSCALE.WHITE,
               }}
               _dark={{
-                color: "white",
+                color: COLORS_GRAYSCALE.WHITE,
               }}
             />
           </Box>
@@ -113,14 +113,18 @@ export default function AddCategory() {
           fontWeight={"extrabold"}
           fontSize={16}
           placeholder={"Название"}
+          placeholderTextColor={COLORS_GRAYSCALE.PLACEHOLDER}
           clearButtonMode="always"
+          _focus={{
+            borderColor: COLORS_GRAYSCALE.HEADER,
+          }}
           _light={{
-            backgroundColor: COLORS_GRAYSCALE.LINE,
+            backgroundColor: COLORS_GRAYSCALE.INPUT,
             color: COLORS_GRAYSCALE.HEADER,
           }}
           _dark={{
-            color: COLORS_GRAYSCALE.HEADER,
-            backgroundColor: COLORS_GRAYSCALE.LINE,
+            color: COLORS_GRAYSCALE.WHITE,
+            backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
             borderColor: COLORS_GRAYSCALE.LINE,
           }}
           onChangeText={setName}
@@ -128,10 +132,10 @@ export default function AddCategory() {
       </Box>
       <Box
         _light={{
-          backgroundColor: "white",
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
         }}
         _dark={{
-          backgroundColor: "white",
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
         style={{ borderRadius: 12, padding: 24 }}
         mt={4}
@@ -151,10 +155,10 @@ export default function AddCategory() {
       </Box>
       <Box
         _light={{
-          backgroundColor: "white",
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
         }}
         _dark={{
-          backgroundColor: "white",
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
         style={{ borderRadius: 12, padding: 24 }}
         mt={4}

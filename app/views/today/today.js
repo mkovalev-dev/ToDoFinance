@@ -1,5 +1,9 @@
 import { Box, Heading, Text } from "native-base";
-import { COLORS_GRAYSCALE } from "../../modules/colors";
+import {
+  COLORS_GRAYSCALE,
+  COLORS_PRIMARY,
+  SECONDARY_GRADIENT,
+} from "../../modules/colors";
 import { useSelector } from "react-redux";
 import { userCalendarDate } from "../../services/redux/slices/taskSlice";
 import { useState } from "react";
@@ -20,7 +24,7 @@ export default function Today() {
   return (
     <Box style={{ marginBottom: 18 }}>
       <Heading
-        _dark={{ color: "white" }}
+        _dark={{ color: COLORS_GRAYSCALE.WHITE }}
         _light={{ color: COLORS_GRAYSCALE.HEADER }}
         size={"lg"}
       >
@@ -28,7 +32,7 @@ export default function Today() {
       </Heading>
       <Box
         style={{
-          backgroundColor: "white",
+          // backgroundColor: "white",
           minHeight: 119,
           maxHeight: 150,
           borderRadius: 12,
@@ -36,14 +40,20 @@ export default function Today() {
           padding: 12,
           justifyContent: "center",
         }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
+        }}
+        _dark={{
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
+        }}
       >
         {filteredDates.length === 0 ? (
           <Text
             style={{ textAlign: "center" }}
-            _light={{ color: COLORS_GRAYSCALE.PLACEHOLDER }}
-            _dark={{ color: COLORS_GRAYSCALE.PLACEHOLDER }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+            _light={{ color: COLORS_GRAYSCALE.HEADER }}
           >
-            На сегодня ничего важного.
+            На сегодня ничего важного
           </Text>
         ) : (
           <FlatList

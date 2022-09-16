@@ -12,7 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import store from "./app/services/redux/store";
 import moment from "moment";
 import "moment/locale/ru";
-import TabBottomMenu from "./app/views/tabBottomMenu";
+import TabBottomMenu from "./app/views/tabBarNavigation/tabBottomMenu";
 const config = {
   dependencies: {
     "linear-gradient": LinearGradient,
@@ -46,15 +46,17 @@ export default function App() {
       try {
         checkViewOnboarding();
       } catch (e) {
-        console.warn(e);
+        // console.warn(e);
       } finally {
         setAppIsReady(true);
-        await SplashScreen.hideAsync();
+        if (appIsReady) {
+          await SplashScreen.hideAsync();
+        }
       }
     }
 
     prepare();
-  }, []);
+  }, [appIsReady, viewOnboarding]);
 
   return (
     <Provider store={store}>

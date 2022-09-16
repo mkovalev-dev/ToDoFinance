@@ -7,6 +7,7 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import { userCalendarDate } from "../../../services/redux/slices/taskSlice";
 import CalendarLegend from "./CalendarLegend";
+import { useColorScheme } from "react-native";
 
 const INITIAL_DATE = moment().format("YYYY-MM-DD");
 LocaleConfig.locales["ru"] = {
@@ -52,6 +53,7 @@ LocaleConfig.locales["ru"] = {
 };
 LocaleConfig.defaultLocale = "ru";
 const CalendarScreen = () => {
+  const colorScheme = useColorScheme();
   const [selected, setSelected] = useState(INITIAL_DATE);
   const userCalendarDates = useSelector(userCalendarDate);
   const [formatedDates, setFormatedDates] = useState({});
@@ -79,7 +81,7 @@ const CalendarScreen = () => {
         selected: true,
         disableTouchEvent: true,
         selectedColor: COLORS_PRIMARY.DEFAULT,
-        selectedTextColor: "white",
+        selectedTextColor: COLORS_GRAYSCALE.WHITE,
       },
     });
   }, [selected, formatedDates, userCalendarDates]);
@@ -93,35 +95,60 @@ const CalendarScreen = () => {
         onDayPress={onDayPress}
         firstDay={1}
         markedDates={marked}
-        theme={{
-          textSectionTitleColor: COLORS_GRAYSCALE.HEADER,
-          textSectionTitleDisabledColor: "gray",
-          todayTextColor: COLORS_PRIMARY.DEFAULT,
-          monthTextColor: "black",
-          selectedDayBackgroundColor: "#333248",
-          arrowColor: COLORS_PRIMARY.DEFAULT,
-          stylesheet: {
-            calendar: {
-              header: {
-                week: {
-                  marginTop: 30,
-                  marginHorizontal: 12,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+        theme={
+          colorScheme === "light"
+            ? {
+                textSectionTitleColor: COLORS_GRAYSCALE.HEADER,
+                textSectionTitleDisabledColor: "gray",
+                todayTextColor: COLORS_PRIMARY.DEFAULT,
+                monthTextColor: "black",
+                selectedDayBackgroundColor: "#333248",
+                arrowColor: COLORS_PRIMARY.DEFAULT,
+                stylesheet: {
+                  calendar: {
+                    header: {
+                      week: {
+                        marginTop: 30,
+                        marginHorizontal: 12,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      },
+                    },
+                  },
                 },
-              },
-            },
-          },
-        }}
+              }
+            : {
+                calendarBackground: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
+                textSectionTitleColor: COLORS_GRAYSCALE.WHITE,
+                dayTextColor: COLORS_GRAYSCALE.WHITE,
+                textSectionTitleDisabledColor: COLORS_GRAYSCALE.INPUT,
+                todayTextColor: COLORS_PRIMARY.DEFAULT,
+                monthTextColor: COLORS_GRAYSCALE.WHITE,
+                selectedDayBackgroundColor: "#333248",
+                arrowColor: COLORS_PRIMARY.DEFAULT,
+                stylesheet: {
+                  calendar: {
+                    header: {
+                      week: {
+                        marginTop: 30,
+                        marginHorizontal: 12,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      },
+                    },
+                  },
+                },
+              }
+        }
       />
       <Heading
-        _dark={{ color: "white" }}
+        _dark={{ color: COLORS_GRAYSCALE.WHITE }}
         _light={{ color: COLORS_GRAYSCALE.HEADER }}
         size={"lg"}
         style={{ marginBottom: 18 }}
       >
         {selected === moment().format("YYYY-MM-DD")
-          ? "Сегодня"
+          ? `Сегодня, ${moment(selected).format("MMMM DD")}`
           : moment(selected).format("DD-MM-YYYY")}
       </Heading>
       <CalendarLegend selectedDate={selected} dates={userCalendarDates} />

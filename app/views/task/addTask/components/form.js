@@ -4,6 +4,7 @@ import {
   COLORS_GRAYSCALE,
   COLORS_PRIMARY,
   PRIMARY_GRADIENT,
+  SECONDARY_GRADIENT,
 } from "../../../../modules/colors";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -24,6 +25,7 @@ import {
   StaticActionConst,
 } from "../../../../modules/getTasksCountFromAction";
 import CategoryListFormItem from "./categoryListFormItem";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function Form() {
   const [value, setValue] = useState("Новая задача");
@@ -45,11 +47,16 @@ export default function Form() {
     >
       <Box
         style={{
-          backgroundColor: "#fff",
           width: "100%",
           minHeight: 55,
           padding: PADDING.ALL,
           borderRadius: 12,
+        }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
+        }}
+        _dark={{
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
       >
         <HStack space={2}>
@@ -65,7 +72,7 @@ export default function Form() {
             }}
           />
           <Heading
-            _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"md"}
             mb={4}
@@ -80,13 +87,16 @@ export default function Form() {
           value={value}
           fontSize={16}
           clearButtonMode="always"
+          _focus={{
+            borderColor: COLORS_GRAYSCALE.HEADER,
+          }}
           _light={{
-            backgroundColor: COLORS_GRAYSCALE.LINE,
+            backgroundColor: COLORS_GRAYSCALE.INPUT,
             color: COLORS_GRAYSCALE.HEADER,
           }}
           _dark={{
-            color: COLORS_GRAYSCALE.HEADER,
-            backgroundColor: COLORS_GRAYSCALE.LINE,
+            color: COLORS_GRAYSCALE.WHITE,
+            backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
             borderColor: COLORS_GRAYSCALE.LINE,
           }}
           onChangeText={handleChange}
@@ -95,11 +105,16 @@ export default function Form() {
       <Box
         mt={4}
         style={{
-          backgroundColor: "#fff",
           width: "100%",
           minHeight: 55,
           padding: PADDING.ALL,
           borderRadius: 12,
+        }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
+        }}
+        _dark={{
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
       >
         <HStack space={2}>
@@ -115,7 +130,7 @@ export default function Form() {
             }}
           />
           <Heading
-            _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"md"}
             mb={4}
@@ -132,39 +147,51 @@ export default function Form() {
           />
         </HStack>
         {viewDatePicker && (
-          <DatePicker
-            mode={"calendar"}
-            onSelectedChange={(date) => setSelectedDate(date)}
-            options={{
-              mainColor: COLORS_PRIMARY.DEFAULT,
-            }}
-            configs={{
-              dayNames: [
-                "Воскресенье",
-                "Понедельник",
-                "Вторник",
-                "Среда",
-                "Четверг",
-                "Пятница",
-                "Суббота",
-              ],
-              dayNamesShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-              monthNames: [
-                "Январь",
-                "Февраль",
-                "Март",
-                "Апрель",
-                "Май",
-                "Июнь",
-                "Июль",
-                "Август",
-                "Сентябрь",
-                "Октябрь",
-                "Ноябрь",
-                "Декабрь",
-              ],
+          <DateTimePicker
+            locale="ru-RU"
+            display={"spinner"}
+            style={{ flex: 1 }}
+            testID="dateTimePicker"
+            value={new Date(selectedDate)}
+            mode={"date"}
+            is24Hour={true}
+            onChange={(event, date) => {
+              setSelectedDate(moment(date).format("YYYY/MM/DD"));
             }}
           />
+          // <DatePicker
+          //   mode={"calendar"}
+          //   onSelectedChange={(date) => setSelectedDate(date)}
+          //   options={{
+          //     mainColor: COLORS_PRIMARY.DEFAULT,
+          //   }}
+          //   configs={{
+          //     dayNames: [
+          //       "Воскресенье",
+          //       "Понедельник",
+          //       "Вторник",
+          //       "Среда",
+          //       "Четверг",
+          //       "Пятница",
+          //       "Суббота",
+          //     ],
+          //     dayNamesShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+          //     monthNames: [
+          //       "Январь",
+          //       "Февраль",
+          //       "Март",
+          //       "Апрель",
+          //       "Май",
+          //       "Июнь",
+          //       "Июль",
+          //       "Август",
+          //       "Сентябрь",
+          //       "Октябрь",
+          //       "Ноябрь",
+          //       "Декабрь",
+          //     ],
+          //   }}
+          // />
         )}
         <Text color={COLORS_GRAYSCALE.PLACEHOLDER} textAlign={"center"}>
           Если дата не выбрана, то задача создается на текущую дату!
@@ -173,11 +200,16 @@ export default function Form() {
       <Box
         mt={4}
         style={{
-          backgroundColor: "#fff",
           width: "100%",
           minHeight: 55,
           padding: PADDING.ALL,
           borderRadius: 12,
+        }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
+        }}
+        _dark={{
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
       >
         <HStack space={2}>
@@ -193,7 +225,7 @@ export default function Form() {
             }}
           />
           <Heading
-            _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"md"}
             mb={4}
@@ -216,11 +248,16 @@ export default function Form() {
       <Box
         mt={4}
         style={{
-          backgroundColor: "#fff",
           width: "100%",
           minHeight: 55,
           padding: PADDING.ALL,
           borderRadius: 12,
+        }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
+        }}
+        _dark={{
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
       >
         <HStack space={2}>
@@ -236,7 +273,7 @@ export default function Form() {
             }}
           />
           <Heading
-            _dark={{ color: COLORS_GRAYSCALE.HEADER }}
+            _dark={{ color: COLORS_GRAYSCALE.WHITE }}
             _light={{ color: COLORS_GRAYSCALE.HEADER }}
             size={"md"}
             mb={4}
@@ -299,7 +336,10 @@ export default function Form() {
           }}
         >
           <HStack space={2}>
-            <Text _light={{ color: "white" }} _dark={{ color: "white" }}>
+            <Text
+              _light={{ color: COLORS_GRAYSCALE.WHITE }}
+              _dark={{ color: COLORS_GRAYSCALE.WHITE }}
+            >
               Cоздать
             </Text>
           </HStack>
