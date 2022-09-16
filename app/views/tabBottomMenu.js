@@ -4,8 +4,32 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS_GRAYSCALE, COLORS_PRIMARY } from "../modules/colors";
 import AddTask from "./task/addTask";
 import CalendarStack from "./calendar/CalendarStack";
+import LottieView from "lottie-react-native";
+import { useRef, useEffect } from "react";
 
 const Tab = createBottomTabNavigator();
+
+const LottieIcon = ({ focused, icon, route, progress }) => {
+  const animation = useRef();
+  if (focused) {
+    animation.current?.play();
+    setTimeout(() => {
+      animation.current?.pause();
+      if (progress !== 1) {
+        animation.current?.reset();
+      }
+    }, 1000);
+  }
+  return (
+    <LottieView
+      progress={progress}
+      loop={true}
+      ref={animation}
+      source={icon}
+      style={{ width: 35 }}
+    />
+  );
+};
 
 export default function TabBottomMenu() {
   return (
@@ -16,15 +40,27 @@ export default function TabBottomMenu() {
         showLabel: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+          let progress;
 
           if (route.name === "Home") {
-            iconName = "home";
+            iconName = require("../assets/icons/home.json");
+            progress = 0;
           } else if (route.name === "AddTask") {
-            iconName = "add";
+            iconName = require("../assets/icons/plus.json");
+            progress = 0;
           } else if (route.name === "Calendar") {
-            iconName = "calendar";
+            iconName = require("../assets/icons/calendar.json");
+            progress = 1;
           }
-          return <Ionicons name={iconName} size={32} color={color} />;
+
+          return (
+            <LottieIcon
+              focused={focused}
+              icon={iconName}
+              route={route}
+              progress={progress}
+            />
+          );
         },
         tabBarStyle: {
           height: 80,
