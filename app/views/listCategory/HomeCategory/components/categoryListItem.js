@@ -1,6 +1,10 @@
 import { Box, Heading, HStack, Icon, Text } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { COLORS_GRAYSCALE } from "../../../../modules/colors";
+import {
+  COLORS_GRAYSCALE,
+  COLORS_PRIMARY,
+  SECONDARY_GRADIENT,
+} from "../../../../modules/colors";
 import { Spacer } from "native-base/src/components/primitives/Flex";
 import { useSelector } from "react-redux";
 import { userTasks } from "../../../../services/redux/slices/taskSlice";
@@ -35,12 +39,17 @@ export default function CategoryListItem({ item }) {
           marginTop: 5,
           marginBottom: 5,
           borderRadius: 12,
-          backgroundColor: "white",
           justifyContent: "center",
           paddingTop: 5,
           paddingBottom: 5,
           paddingLeft: 15,
           paddingRight: 15,
+        }}
+        _light={{
+          backgroundColor: COLORS_GRAYSCALE.WHITE,
+        }}
+        _dark={{
+          backgroundColor: COLORS_GRAYSCALE.DARK_LIGHT_THEME,
         }}
       >
         <HStack alignItems={"center"} space={2}>
@@ -56,22 +65,37 @@ export default function CategoryListItem({ item }) {
           >
             <Icon
               as={FontAwesome5}
-              size={7}
+              size={6}
               name={item.icon}
               textAlign={"center"}
               _light={{
-                color: "white",
+                color: COLORS_GRAYSCALE.WHITE,
               }}
               _dark={{
-                color: "white",
+                color: COLORS_GRAYSCALE.WHITE,
               }}
             />
           </Box>
-          <Heading size={"sm"} color={COLORS_GRAYSCALE.HEADER}>
+          <Heading
+            size={"sm"}
+            _light={{
+              color: COLORS_GRAYSCALE.HEADER,
+            }}
+            _dark={{
+              color: COLORS_GRAYSCALE.WHITE,
+            }}
+          >
             {item.name}
           </Heading>
           <Spacer />
-          <Text color={COLORS_GRAYSCALE.HEADER}>
+          <Text
+            _light={{
+              color: COLORS_GRAYSCALE.HEADER,
+            }}
+            _dark={{
+              color: COLORS_GRAYSCALE.WHITE,
+            }}
+          >
             {getTasksCountFromAction({
               data: userTaskList,
               actionName: StaticActionConst.CATEGORY,
@@ -83,7 +107,12 @@ export default function CategoryListItem({ item }) {
             size={5}
             name={"chevron-right"}
             textAlign={"center"}
-            color={COLORS_GRAYSCALE.HEADER}
+            _light={{
+              color: COLORS_GRAYSCALE.HEADER,
+            }}
+            _dark={{
+              color: COLORS_GRAYSCALE.WHITE,
+            }}
           />
         </HStack>
       </Box>

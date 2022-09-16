@@ -43,7 +43,7 @@ export default function CategoryList() {
         padding: PADDING.ALL,
       }}
       _light={{ borderColor: COLORS_PRIMARY.DEFAULT }}
-      _dark={{ borderColor: "white" }}
+      _dark={{ borderColor: COLORS_GRAYSCALE.WHITE }}
     >
       <Text
         style={{ textAlign: "center" }}
@@ -76,7 +76,7 @@ export default function CategoryList() {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: COLORS_GRAYSCALE.WHITE,
     flex: 1,
   },
   backTextWhite: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 12,
-    backgroundColor: "white",
+    backgroundColor: COLORS_GRAYSCALE.WHITE,
     justifyContent: "center",
     paddingTop: 5,
     paddingBottom: 5,
