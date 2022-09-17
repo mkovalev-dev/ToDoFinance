@@ -16,7 +16,6 @@ export default function AddTask() {
       style={{
         flex: 1,
         padding: PADDING.ALL,
-        paddingTop: 56,
       }}
     >
       <Header />
