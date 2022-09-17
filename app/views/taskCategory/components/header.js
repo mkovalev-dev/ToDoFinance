@@ -7,7 +7,7 @@ import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Header() {
+export default function Header({ name = "Мои списки", route = "AddCategory" }) {
   const navigation = useNavigation();
   return (
     <HStack alignItems="center" justifyContent="center" space={1}>
@@ -16,10 +16,10 @@ export default function Header() {
         _light={{ color: COLORS_GRAYSCALE.HEADER }}
         size={"lg"}
       >
-        Мои списки
+        {name}
       </Heading>
       <Spacer />
-      <TouchableOpacity onPress={() => navigation.navigate("AddCategory")}>
+      <TouchableOpacity onPress={() => navigation.navigate(route)}>
         <Icon
           as={AntDesign}
           size={7}

@@ -55,7 +55,7 @@ export default function TaskItem({ item, index }) {
       <Box
         style={{
           width: "100%",
-          minHeight: 65,
+          height: 55,
           borderRadius: 16,
           borderWidth: 1,
           justifyContent: "center",
@@ -81,7 +81,7 @@ export default function TaskItem({ item, index }) {
               isDisabled
               colorScheme="blue"
               variant={"solid"}
-              size={"md"}
+              size={"xs"}
               _icon={{
                 as: AntDesign,
                 name: "check",
@@ -94,7 +94,7 @@ export default function TaskItem({ item, index }) {
                 borderRadius={12}
                 colorScheme="error"
                 variant={"solid"}
-                size={"md"}
+                size={"xs"}
                 _icon={{
                   as: AntDesign,
                   name: "delete",
@@ -105,7 +105,7 @@ export default function TaskItem({ item, index }) {
                 borderRadius={12}
                 colorScheme="blueGray"
                 variant={"solid"}
-                size={"md"}
+                size={"xs"}
                 _icon={{
                   as: AntDesign,
                   name: "close",
