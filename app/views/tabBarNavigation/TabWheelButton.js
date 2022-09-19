@@ -109,7 +109,7 @@ export default function TabWheelButton() {
               colorScheme="green"
               borderRadius="full"
               onPress={() => {
-                navigation.navigate("AddCalendar");
+                navigation.navigate("Calendar", {screen: 'AddCalendar'});
                 onToggle();
               }}
               icon={
